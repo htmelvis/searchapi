@@ -1,29 +1,32 @@
 'use strict';
 
 // Articles controller
-angular.module('articles').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Articles',
-	function($scope, $stateParams, $location, Authentication, Articles) {
+angular.module('articles').controller('ArticlesController', ['$scope', '$stateParams', '$location', 'Authentication', 'Articles', '$http',
+	function($scope, $stateParams, $location, Authentication, Articles, $http) {
 		$scope.authentication = Authentication;
 
-		// Create new Article
-		$scope.create = function() {
-			// Create new Article object
-			var article = new Articles({
-				title: this.title,
-				content: this.content
-			});
-
-			// Redirect after save
-			article.$save(function(response) {
-				$location.path('articles/' + response._id);
-
-				// Clear form fields
-				$scope.title = '';
-				$scope.content = '';
-			}, function(errorResponse) {
-				$scope.error = errorResponse.data.message;
-			});
+		$scope.searchGoogle = function(){
+				return $http.get('https://www.googleapis.com/customsearch/v1?key=AIzaSyAeVTuDVEgApcnRN21spJ4peLNyiRQAgcU&q=netting');
 		};
+		// Create new Article
+		//$scope.create = function() {
+		//	// Create new Article object
+		//	var article = new Articles({
+		//		title: this.title,
+		//		content: this.content
+		//	});
+    //
+		//	// Redirect after save
+		//	article.$save(function(response) {
+		//		$location.path('articles/' + response._id);
+    //
+		//		// Clear form fields
+		//		$scope.title = '';
+		//		$scope.content = '';
+		//	}, function(errorResponse) {
+		//		$scope.error = errorResponse.data.message;
+		//	});
+		//};
 
 		// Remove existing Article
 		$scope.remove = function(article) {

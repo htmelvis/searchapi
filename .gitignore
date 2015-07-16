@@ -4,7 +4,6 @@
 ehthumbs.db
 Icon?
 Thumbs.db
-
 # Node and related ecosystem
 # ==========================
 .nodemonignore
@@ -18,6 +17,7 @@ app/tests/coverage/
 
 # MEAN.js app and assets
 # ======================
+config/env/
 config/sslcerts/*.pem
 access.log
 public/dist/
